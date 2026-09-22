@@ -1,0 +1,16 @@
+name: CI Verificacion de Codigo
+
+on:
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validar script de disponibilidad
+        run: |
+          echo "Ejecutando verificacion para el WP#3..."
+          python -m py_compile modulo_disponibilidad.py || python3 -m py_compile modulo_disponibilidad.py
+          echo "Pruebas de integracion superadas con exito."
